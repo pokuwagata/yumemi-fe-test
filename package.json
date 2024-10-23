@@ -10,6 +10,7 @@
     "start": "next start",
     "lint:eslint": "next lint",
     "lint:prettier": "prettier ./src --check",
+    "fix:eslint": "next lint --fix",
     "test": "vitest"
   },
   "dependencies": {
