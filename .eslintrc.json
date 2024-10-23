@@ -1,3 +1,26 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript", "prettier"]
+  "extends": ["next/core-web-vitals", "next/typescript", "prettier"],
+  "rules": {
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": ["../"]
+      }
+    ],
+    "import/newline-after-import": ["error", { "count": 1 }],
+    "import/no-anonymous-default-export": "warn",
+    "import/no-unresolved": "off",
+    "import/order": [
+      "error",
+      {
+        "groups": ["builtin", "external", "parent", "sibling", "index"],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ],
+    "react/function-component-definition": "error"
+  }
 }
