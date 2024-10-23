@@ -2,15 +2,21 @@
   "name": "yumemi-fe-test",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
     "dev": "next dev --experimental-https --experimental-https-key ./cert/key.pem --experimental-https-cert ./cert/cert.pem",
     "dev:mock": "NEXT_PUBLIC_API_MOCKING=enabled pnpm dev",
     "build": "next build",
     "postbuild": "rm -rf ./out/mockServiceWorker.js",
     "start": "next start",
+    "lint": "pnpm lint:typecheck && pnpm lint:eslint && pnpm lint:prettier",
     "lint:eslint": "next lint",
-    "lint:prettier": "prettier ./src --check",
+    "lint:prettier": "prettier --check ./src",
+    "lint:typecheck": "tsc",
     "fix:eslint": "next lint --fix",
+    "fix:prettier": "prettier --write ./src",
     "test": "vitest"
   },
   "dependencies": {
