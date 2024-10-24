@@ -5,5 +5,5 @@ import Page from "~/pages/index";
 
 test("Page", () => {
   render(<Page />);
-  expect(screen.getByText("test")).toBeDefined();
+  expect(screen.getByText("isLoading")).toBeDefined();
 });

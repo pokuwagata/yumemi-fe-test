@@ -1,25 +1,26 @@
-import { useEffect } from "react";
+import useSWR from "swr";
+
+async function fetcher(path: string) {
+  const res = await fetch("https://opendata.resas-portal.go.jp/api" + path, {
+    headers: {
+      "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY ?? "",
+    },
+  });
+  const json = await res.json();
+
+  return json;
+}
 
 export default function Home() {
-  useEffect(() => {
-    fetch("https://local.api.yumemi-fe-test.com/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        query: `
-        query GetUser($userId: String!) {
-          user(id: $userId) {
-            name
-          }
-        }
-        `,
-        variables: { userId: 1 },
-      }),
-    }).then(async (response) => {
-      console.log(await response.json());
-    });
-  }, []);
-  return <p>test</p>;
+  const { data, isLoading, error } = useSWR("/v1/prefectures", fetcher);
+
+  if (error) return <p>error: {JSON.stringify(error)}</p>;
+  if (isLoading) return <p>isLoading</p>;
+
+  return (
+    <>
+      <p>data:</p>
+      <p>{JSON.stringify(data)}</p>
+    </>
+  );
 }
