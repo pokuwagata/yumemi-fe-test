@@ -1,8 +1,10 @@
 import useSWR from "swr";
 import useSWRMutation from "swr/mutation";
 
+import { API_BASE_URL } from "~/lib/const";
+
 async function fetcher(path: string) {
-  const res = await fetch("https://opendata.resas-portal.go.jp/api" + path, {
+  const res = await fetch(`${API_BASE_URL}${path}`, {
     headers: {
       "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY ?? "",
     },

@@ -4,12 +4,14 @@ import population1 from "./population-1.json";
 import population2 from "./population-2.json";
 import prefectures from "./prefectures.json";
 
+import { API_BASE_URL } from "~/lib/const";
+
 export const handlers = [
-  http.get("https://opendata.resas-portal.go.jp/api/v1/prefectures", () => {
+  http.get(`${API_BASE_URL}/v1/prefectures`, () => {
     return HttpResponse.json(prefectures);
   }),
   http.get(
-    "https://opendata.resas-portal.go.jp/api/v1/population/composition/perYear",
+    `${API_BASE_URL}/v1/population/composition/perYear`,
     ({ request }) => {
       const url = new URL(request.url);
 
