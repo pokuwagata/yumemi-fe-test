@@ -2,6 +2,7 @@ import useSWR from "swr";
 import useSWRMutation from "swr/mutation";
 
 import { API_BASE_URL } from "~/lib/const";
+import { PrefecturesResponse } from "~/types/api";
 
 async function fetcher(path: string) {
   const res = await fetch(`${API_BASE_URL}${path}`, {
@@ -19,7 +20,10 @@ async function populationFetcher(path: string, { arg }: { arg: string }) {
 }
 
 export default function Home() {
-  const { data, isLoading, error } = useSWR("/v1/prefectures", fetcher);
+  const { data, isLoading, error } = useSWR<PrefecturesResponse>(
+    "/v1/prefectures",
+    fetcher,
+  );
   const { data: population, trigger } = useSWRMutation(
     "/v1/population/composition/perYear",
     populationFetcher,
