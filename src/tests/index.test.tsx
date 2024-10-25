@@ -1,9 +1,22 @@
-import { render, screen } from "@testing-library/react";
-import { expect, test } from "vitest";
+import "@testing-library/jest-dom/vitest";
+import {
+  render,
+  screen,
+  waitForElementToBeRemoved,
+} from "@testing-library/react";
+import { test, beforeAll, afterEach, afterAll, expect } from "vitest";
 
+import { server } from "~/mocks/server";
 import Page from "~/pages/index";
 
-test("Page", () => {
+beforeAll(() => server.listen());
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());
+
+test("Page", async () => {
   render(<Page />);
-  expect(screen.getByText("isLoading")).toBeDefined();
+
+  await waitForElementToBeRemoved(() => screen.queryByText("isLoading"));
+
+  expect(screen.getByText("data:")).toBeInTheDocument();
 });
