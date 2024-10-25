@@ -4,7 +4,7 @@ import {
   screen,
   waitForElementToBeRemoved,
 } from "@testing-library/react";
-import { test, beforeAll, afterEach, afterAll, expect } from "vitest";
+import { beforeAll, afterEach, afterAll } from "vitest";
 
 import { server } from "~/mocks/server";
 import Page from "~/pages/index";
