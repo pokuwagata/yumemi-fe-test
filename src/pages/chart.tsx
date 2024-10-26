@@ -138,18 +138,18 @@ export default function chart() {
   const data = populationToData(selectedPrefs, 2);
 
   return (
-    <LineChart width={400} height={400} data={data}>
+    <LineChart
+      width={800}
+      height={800}
+      data={data}
+      margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
+    >
       <XAxis dataKey="name">
-        <Label value="年度" offset={0} position="insideBottom" />
+        <Label value="年度" position="bottom" />
       </XAxis>
-      <YAxis
-        label={{
-          value: "人口数",
-          angle: -90,
-          position: "insideLeft",
-          textAnchor: "middle",
-        }}
-      />
+      <YAxis tickFormatter={(value) => (value / 10e4).toFixed(1)}>
+        <Label value={"人口数 (万人)"} angle={-90} position="left" />
+      </YAxis>
       {selectedPrefs.map((code) => {
         const name = prefs.find((p) => p.prefCode === code)?.prefName;
 
