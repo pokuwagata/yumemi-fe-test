@@ -19,43 +19,107 @@ const prefs = [
   },
 ];
 
-const population: { [n: number]: { year: number; value: number }[] } = {
+const population: {
+  [n: number]: {
+    label: string;
+    data: { year: number; value: number; rate?: number }[];
+  }[];
+} = {
   1: [
     {
-      year: 1960,
-      value: 5039206,
+      label: "総人口",
+      data: [
+        {
+          year: 1960,
+          value: 5039206,
+        },
+        {
+          year: 1965,
+          value: 5171800,
+        },
+        {
+          year: 1970,
+          value: 5184287,
+        },
+      ],
     },
     {
-      year: 1965,
-      value: 5171800,
-    },
-    {
-      year: 1970,
-      value: 5184287,
+      label: "生産年齢人口",
+      data: [
+        {
+          year: 1960,
+          value: 3145664,
+          rate: 62.42,
+        },
+        {
+          year: 1965,
+          value: 3460359,
+          rate: 66.91,
+        },
+        {
+          year: 1970,
+          value: 3575731,
+          rate: 68.97,
+        },
+      ],
     },
   ],
   2: [
     {
-      year: 1960,
-      value: 1426606,
+      label: "総人口",
+      data: [
+        {
+          year: 1960,
+          value: 1426606,
+        },
+        {
+          year: 1965,
+          value: 1416591,
+        },
+        {
+          year: 1970,
+          value: 1427520,
+        },
+      ],
     },
     {
-      year: 1965,
-      value: 1416591,
-    },
-    {
-      year: 1970,
-      value: 1427520,
+      label: "生産年齢人口",
+      data: [
+        {
+          year: 1960,
+          value: 848838,
+          rate: 59.5,
+        },
+        {
+          year: 1965,
+          value: 894521,
+          rate: 63.15,
+        },
+        {
+          year: 1970,
+          value: 940235,
+          rate: 65.86,
+        },
+      ],
     },
   ],
 };
 
+const typeToLabel: { [n: number]: string } = {
+  1: "総人口",
+  2: "生産年齢人口",
+};
+
 type DataItem = { name: number; [n: number]: number };
 
-function populationToData(selectedPrefs: number[]) {
+function populationToData(selectedPrefs: number[], type: number) {
   const data: DataItem[] = [];
   selectedPrefs.forEach((prefCode) => {
-    population[prefCode].forEach((pop) => {
+    const targetPopulation = population[prefCode].find(
+      (pop) => pop.label === typeToLabel[type],
+    )?.data;
+
+    targetPopulation?.forEach((pop) => {
       const target = data.find((d) => d.name === pop.year);
       if (!target) {
         const item: DataItem = { name: pop.year };
@@ -71,7 +135,7 @@ function populationToData(selectedPrefs: number[]) {
 
 export default function chart() {
   const selectedPrefs = [1, 2];
-  const data = populationToData(selectedPrefs);
+  const data = populationToData(selectedPrefs, 2);
 
   return (
     <LineChart width={400} height={400} data={data}>
