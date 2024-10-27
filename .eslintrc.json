@@ -1,5 +1,6 @@
 {
   "extends": ["next/core-web-vitals", "next/typescript", "prettier"],
+  "plugins": ["@stylistic"],
   "rules": {
     "no-console": "warn",
     "no-restricted-imports": [
@@ -21,6 +22,20 @@
           "caseInsensitive": true
         }
       }
+    ],
+    "@stylistic/padding-line-between-statements": [
+      "error",
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": ["return", "multiline-expression", "block-like", "try", "throw"]
+      },
+      {
+        "blankLine": "always",
+        "prev": ["multiline-expression", "block-like", "const", "let"],
+        "next": "*"
+      },
+      { "blankLine": "any", "prev": ["const", "let"], "next": ["const", "let"] }
     ],
     "react/function-component-definition": "error"
   }
