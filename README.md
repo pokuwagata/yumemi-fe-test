@@ -104,6 +104,32 @@ message はコミット内容を表現する文言を日本語で記載する。
 
 `env: Lint の設定を変更`
 
+## ディレクトリ構成
+
+```txt
+./src
+├── features // 機能単位の実装
+│   ├── home
+│   │   ├── components
+│   │   ├── hooks
+│   │   ├── tests
+│   │   └── contexts
+│   └── others
+│       └── components
+├── pages
+│   ├── 404.tsx
+│   ├── _app.tsx
+│   └── index.tsx
+├── lib // プロダクト全体で利用する共通処理
+├── mocks // MSW に関する実装
+└── types // 型定義
+```
+
+### features ディレクトリについて
+
+- Next.js の Pages 単位で features 配下にディレクトリを作成
+- 各 features ディレクトリ内にはそのページでしか使用しない Component, Hooks, Context を配置
+
 ## 技術選定
 
 TODO
