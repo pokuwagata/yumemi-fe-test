@@ -114,6 +114,7 @@ type DataItem = { name: number; [n: number]: number };
 
 function populationToData(selectedPrefs: number[], type: number) {
   const data: DataItem[] = [];
+
   selectedPrefs.forEach((prefCode) => {
     const targetPopulation = population[prefCode].find(
       (pop) => pop.label === typeToLabel[type],
@@ -121,8 +122,10 @@ function populationToData(selectedPrefs: number[], type: number) {
 
     targetPopulation?.forEach((pop) => {
       const target = data.find((d) => d.name === pop.year);
+
       if (!target) {
         const item: DataItem = { name: pop.year };
+
         item[prefCode] = pop.value;
         data.push(item);
       } else {
@@ -130,6 +133,7 @@ function populationToData(selectedPrefs: number[], type: number) {
       }
     });
   });
+
   return data;
 }
 
