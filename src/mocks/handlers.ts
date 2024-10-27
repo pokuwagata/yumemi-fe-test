@@ -18,12 +18,14 @@ export const handlers = [
       const prefCode = url.searchParams.get("prefCode");
 
       let population;
+
       switch (prefCode) {
         case "1":
           population = population1;
         case "2":
           population = population2;
       }
+
       return HttpResponse.json(population);
     },
   ),
