@@ -130,6 +130,23 @@ message はコミット内容を表現する文言を日本語で記載する。
 - Next.js の Pages 単位で features 配下にディレクトリを作成
 - 各 features ディレクトリ内にはそのページでしか使用しない Component, Hooks, Context を配置
 
+### components ディレクトリについて
+
+```txt
+./src/features/home/components
+├── Home
+│   ├── Home.module.scss
+│   ├── Home.tsx
+│   └── index.ts
+```
+
+- コンポーネント毎にディレクトリを作成
+- `index.ts` からコンポーネントを export する
+
+### 参考
+
+- [フロントエンドのディレクトリ設計 (Next.js Pages Router)](https://blog.yn2011.com/posts/2024-08-23-nextjs-fe-directory) (自分が書いたブログ記事)
+
 ## 技術選定
 
 TODO
