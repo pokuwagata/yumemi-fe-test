@@ -1,18 +1,17 @@
 import styles from "./Home.module.css";
 
+import { Chart } from "~/features/home/components/Chart";
+import { Header } from "~/features/home/components/Header/Header";
+import { Prefectures } from "~/features/home/components/Prefectures";
+
 export function Home() {
   return (
     <div className={styles.layout}>
-      <header>
-        <h1>ゆめみフロントエンドコーディング試験</h1>
-      </header>
+      <Header>ゆめみフロントエンドコーディング試験</Header>
       <main>
         <section>
-          <h2>都道府県</h2>
-          <p>チェックボックス</p>
-          <figure>
-            <p>グラフ</p>
-          </figure>
+          <Prefectures />
+          <Chart />
         </section>
       </main>
     </div>
