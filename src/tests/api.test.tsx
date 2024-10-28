@@ -7,7 +7,7 @@ import {
 import { beforeAll, afterEach, afterAll } from "vitest";
 
 import { server } from "~/mocks/server";
-import Page from "~/pages/index";
+import Page from "~/pages/sandbox/api";
 
 beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
