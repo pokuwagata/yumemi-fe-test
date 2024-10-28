@@ -22,8 +22,10 @@ export const handlers = [
       switch (prefCode) {
         case "1":
           population = population1;
+          break;
         case "2":
           population = population2;
+          break;
       }
 
       return HttpResponse.json(population);
