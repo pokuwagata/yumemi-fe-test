@@ -147,6 +147,11 @@ message はコミット内容を表現する文言を日本語で記載する。
 
 - [フロントエンドのディレクトリ設計 (Next.js Pages Router)](https://blog.yn2011.com/posts/2024-08-23-nextjs-fe-directory) (自分が書いたブログ記事)
 
+## コンポーネント
+
+コンポーネントの再利用性を高めるため `components` ディレクトリで定義するコンポーネントには `margin` を設定しない。
+import してコンポーネントを使用する側で `margin` を設定する。
+
 ## 技術選定
 
 TODO
