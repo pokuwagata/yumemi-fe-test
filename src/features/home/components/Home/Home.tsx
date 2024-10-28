@@ -15,7 +15,7 @@ export function Home() {
           <div className={styles.prefectures}>
             <Prefectures />
           </div>
-          <Chart />
+          <Chart codes={[1, 2]} />
         </section>
       </main>
     </div>
