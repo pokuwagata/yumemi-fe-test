@@ -1,0 +1,8 @@
+:root {
+  --stale-50: #f8fafc;
+  --stale-300: #cbd5e1;
+}
+
+body {
+  background-color: var(--stale-300);
+}

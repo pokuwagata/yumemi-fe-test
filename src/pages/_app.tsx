@@ -1,4 +1,5 @@
 import "destyle.css";
+import "~/styles/global.css";
 import type { AppProps } from "next/app";
 import { useEffect, useState } from "react";
 import { SWRConfig } from "swr";
