@@ -7,10 +7,14 @@ import { Prefectures } from "~/features/home/components/Prefectures";
 export function Home() {
   return (
     <div className={styles.layout}>
-      <Header>ゆめみフロントエンドコーディング試験</Header>
+      <div className={styles.header}>
+        <Header>ゆめみフロントエンドコーディング試験</Header>
+      </div>
       <main>
         <section>
-          <Prefectures />
+          <div className={styles.prefectures}>
+            <Prefectures />
+          </div>
           <Chart />
         </section>
       </main>

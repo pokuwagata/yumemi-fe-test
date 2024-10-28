@@ -1,5 +1,15 @@
 .layout {
   max-width: 960px;
+  min-height: 100dvh;
+  padding: calc(var(--space-unit) * 2) calc(var(--space-unit) * 4);
   margin: 0 auto;
   background-color: var(--stale-50);
+}
+
+.header {
+  margin-bottom: calc(var(--space-unit) * 4);
+}
+
+.prefectures {
+  margin-bottom: calc(var(--space-unit) * 4);
 }
