@@ -14,7 +14,7 @@ import { getPopulationData } from "~/features/home/lib/getPopulationData";
 import {
   populationLabels,
   populationLabelValues,
-} from "~/features/home/lib/populationLabels";
+} from "~/features/home/lib/const";
 import {
   PopulationType,
   RawPopulationResponses,

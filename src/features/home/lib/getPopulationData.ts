@@ -1,4 +1,4 @@
-import { populationLabels } from "~/features/home/lib/populationLabels";
+import { populationLabels } from "~/features/home/lib/const";
 import {
   RawPopulationResponses,
   PopulationType,
