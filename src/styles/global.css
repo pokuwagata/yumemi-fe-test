@@ -7,3 +7,7 @@
 body {
   background-color: var(--stale-300);
 }
+
+input[type="radio"] {
+  appearance: auto;
+}
