@@ -10,11 +10,11 @@ import {
 } from "recharts";
 
 import { RadioButton } from "~/features/home/components/RadioButton/RadioButton";
-import { getPopulationData } from "~/features/home/lib/getPopulationData";
 import {
   populationLabels,
   populationLabelValues,
 } from "~/features/home/lib/const";
+import { getPopulationData } from "~/features/home/lib/getPopulationData";
 import {
   PopulationType,
   RawPopulationResponses,
