@@ -11,8 +11,8 @@ import {
 
 import { RadioButton } from "~/features/home/components/RadioButton/RadioButton";
 import {
-  populationLabels,
   populationLabelValues,
+  populationValueToLabel,
 } from "~/features/home/lib/const";
 import { getPopulationData } from "~/features/home/lib/getPopulationData";
 import {
@@ -61,7 +61,7 @@ export function Chart({ codes, prefectures }: Props) {
                   }
                 }}
               />
-              {populationLabels[value]}
+              {populationValueToLabel[value]}
             </label>
           );
         })}

@@ -1,4 +1,4 @@
-import { populationLabels } from "~/features/home/lib/const";
+import { populationValueToLabel } from "~/features/home/lib/const";
 import {
   RawPopulationResponses,
   PopulationType,
@@ -14,7 +14,7 @@ export function getPopulationData(
 
   selectedPrefs.forEach(async (prefCode) => {
     const targetPopulation = rawData[prefCode].find(
-      (pop) => pop.label === populationLabels[type],
+      (pop) => pop.label === populationValueToLabel[type],
     )?.data;
 
     targetPopulation?.forEach((pop) => {
