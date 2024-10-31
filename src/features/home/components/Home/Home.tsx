@@ -3,19 +3,14 @@ import styles from "./Home.module.css";
 import { Chart } from "~/features/home/components/Chart";
 import { Header } from "~/features/home/components/Header/Header";
 import { Prefectures } from "~/features/home/components/Prefectures";
+import { Prefecture } from "~/types/api";
 
-export function Home() {
+type Props = {
+  prefectures: Prefecture[];
+};
+
+export function Home({ prefectures }: Props) {
   const codes = [1, 2];
-  const prefectures = [
-    {
-      prefCode: 1,
-      prefName: "北海道",
-    },
-    {
-      prefCode: 2,
-      prefName: "青森県",
-    },
-  ];
 
   return (
     <div className={styles.layout}>
@@ -25,7 +20,7 @@ export function Home() {
       <main>
         <section>
           <div className={styles.prefectures}>
-            <Prefectures />
+            <Prefectures prefectures={prefectures} />
           </div>
           <Chart codes={codes} prefectures={prefectures} />
         </section>

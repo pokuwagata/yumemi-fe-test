@@ -1,6 +1,11 @@
+export type Prefecture = {
+  prefCode: number;
+  prefName: string;
+};
+
 export type PrefecturesResponse = {
   message: null;
-  result: { prefCode: number; prefName: string }[];
+  result: Prefecture[];
 };
 
 export type PopulationResponse = {
