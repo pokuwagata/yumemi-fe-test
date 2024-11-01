@@ -31,7 +31,7 @@ export function SelectedPrefCodesContextProvider({
 }: {
   children: ReactNode;
 }) {
-  const [codes, setCodes] = useState<number[]>([]);
+  const [codes, setCodes] = useState<number[]>([1]);
 
   return (
     <SelectedPrefCodesContext.Provider value={{ codes, setCodes }}>
