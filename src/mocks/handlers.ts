@@ -26,6 +26,8 @@ export const handlers = [
         case "2":
           population = population2;
           break;
+        default:
+          population = population1;
       }
 
       return HttpResponse.json(population);

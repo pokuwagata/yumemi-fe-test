@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import styles from "./Home.module.css";
 
 import { Chart } from "~/features/home/components/Chart";
@@ -10,7 +12,7 @@ type Props = {
 };
 
 export function Home({ prefectures }: Props) {
-  const codes = [1, 2];
+  const [codes, setCodes] = useState<number[]>([]);
 
   return (
     <div className={styles.layout}>
@@ -20,7 +22,11 @@ export function Home({ prefectures }: Props) {
       <main>
         <section>
           <div className={styles.prefectures}>
-            <Prefectures prefectures={prefectures} />
+            <Prefectures
+              prefectures={prefectures}
+              codes={codes}
+              setCodes={setCodes}
+            />
           </div>
           <Chart codes={codes} prefectures={prefectures} />
         </section>
