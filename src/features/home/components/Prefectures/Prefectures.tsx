@@ -1,15 +1,16 @@
-import { Dispatch, SetStateAction, MouseEvent } from "react";
+import { MouseEvent } from "react";
 
 import { Checkbox } from "~/features/home/components/Checkbox";
+import { usePrefCodesContext } from "~/features/home/contexts/PrefCodesContext";
 import { Prefecture } from "~/types/api";
 
 type Props = {
   prefectures: Prefecture[];
-  codes: number[];
-  setCodes: Dispatch<SetStateAction<number[]>>;
 };
 
-export function Prefectures({ prefectures, codes, setCodes }: Props) {
+export function Prefectures({ prefectures }: Props) {
+  const { codes, setCodes } = usePrefCodesContext();
+
   function handleOnClick(e: MouseEvent<HTMLInputElement>) {
     const { checked, value } = e.currentTarget;
 
