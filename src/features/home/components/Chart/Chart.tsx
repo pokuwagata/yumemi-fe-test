@@ -11,7 +11,7 @@ import {
 } from "recharts";
 
 import { RadioButton } from "~/features/home/components/RadioButton/RadioButton";
-import { usePrefCodesContext } from "~/features/home/contexts/PrefCodesContext";
+import { useSelectedPrefCodesContext } from "~/features/home/contexts/SelectedPrefCodesContext";
 import {
   populationLabelValues,
   populationValueToLabel,
@@ -32,7 +32,7 @@ type Props = {
 export function Chart({ prefectures }: Props) {
   const [data, setData] = useState<RechartsDataItem[]>([]);
   const [type, setType] = useState<PopulationType>(0);
-  const { codes } = usePrefCodesContext();
+  const { codes } = useSelectedPrefCodesContext();
 
   useEffect(() => {
     const rawData: RawPopulationResponses = {};

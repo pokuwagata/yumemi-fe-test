@@ -3,7 +3,7 @@ import styles from "./Home.module.css";
 import { Chart } from "~/features/home/components/Chart";
 import { Header } from "~/features/home/components/Header/Header";
 import { Prefectures } from "~/features/home/components/Prefectures";
-import { PrefCodesContextProvider } from "~/features/home/contexts/PrefCodesContext";
+import { SelectedPrefCodesContextProvider } from "~/features/home/contexts/SelectedPrefCodesContext";
 import { Prefecture } from "~/types/api";
 
 type Props = {
@@ -18,12 +18,12 @@ export function Home({ prefectures }: Props) {
       </div>
       <main>
         <section>
-          <PrefCodesContextProvider>
+          <SelectedPrefCodesContextProvider>
             <div className={styles.prefectures}>
               <Prefectures prefectures={prefectures} />
             </div>
             <Chart prefectures={prefectures} />
-          </PrefCodesContextProvider>
+          </SelectedPrefCodesContextProvider>
         </section>
       </main>
     </div>

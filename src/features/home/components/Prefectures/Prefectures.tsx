@@ -1,7 +1,7 @@
 import { MouseEvent } from "react";
 
 import { Checkbox } from "~/features/home/components/Checkbox";
-import { usePrefCodesContext } from "~/features/home/contexts/PrefCodesContext";
+import { useSelectedPrefCodesContext } from "~/features/home/contexts/SelectedPrefCodesContext";
 import { Prefecture } from "~/types/api";
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
 };
 
 export function Prefectures({ prefectures }: Props) {
-  const { codes, setCodes } = usePrefCodesContext();
+  const { codes, setCodes } = useSelectedPrefCodesContext();
 
   function handleOnClick(e: MouseEvent<HTMLInputElement>) {
     const { checked, value } = e.currentTarget;
