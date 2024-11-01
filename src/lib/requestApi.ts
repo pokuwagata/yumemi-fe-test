@@ -1,6 +1,6 @@
 import { API_BASE_URL } from "~/lib/const";
 
-export async function requestApi(path: string) {
+export async function requestApi<T>(path: string): Promise<T> {
   const res = await fetch(`${API_BASE_URL}${path}`, {
     headers: {
       "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY ?? "",

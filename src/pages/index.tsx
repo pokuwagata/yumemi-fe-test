@@ -1,8 +1,12 @@
 import Head from "next/head";
 
 import { Home } from "~/features/home/components/Home";
+import { requestApi } from "~/lib/requestApi";
+import { Prefecture, PrefecturesResponse } from "~/types/api";
 
-export default function Page() {
+type Props = { prefectures: Prefecture[] };
+
+export default function Page({ prefectures }: Props) {
   return (
     <>
       <Head>
@@ -12,7 +16,17 @@ export default function Page() {
           content="ゆめみフロントエンドコーディング試験"
         />
       </Head>
-      <Home />
+      <Home prefectures={prefectures} />
     </>
   );
+}
+
+export async function getStaticProps() {
+  const data = await requestApi<PrefecturesResponse>("/v1/prefectures");
+
+  return {
+    props: {
+      prefectures: data.result,
+    },
+  };
 }

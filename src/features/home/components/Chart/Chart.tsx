@@ -22,11 +22,11 @@ import {
 } from "~/features/home/types/api";
 import { RechartsDataItem } from "~/features/home/types/recharts";
 import { requestPopulation } from "~/lib/requestPopulation";
-import { PrefecturesResponse } from "~/types/api";
+import { Prefecture } from "~/types/api";
 
 type Props = {
   codes: number[];
-  prefectures: PrefecturesResponse["result"];
+  prefectures: Prefecture[];
 };
 
 export function Chart({ codes, prefectures }: Props) {

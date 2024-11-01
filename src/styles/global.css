@@ -8,6 +8,7 @@ body {
   background-color: var(--stale-300);
 }
 
+input[type="checkbox"],
 input[type="radio"] {
   appearance: auto;
 }
