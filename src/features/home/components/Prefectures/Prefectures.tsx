@@ -1,3 +1,4 @@
+import { Checkbox } from "~/features/home/components/Checkbox";
 import { Prefecture } from "~/types/api";
 
 type Props = {
@@ -9,13 +10,8 @@ export function Prefectures({ prefectures }: Props) {
     <>
       <h2>都道府県</h2>
       <fieldset>
-        {prefectures.map((prefecture) => {
-          return (
-            <label key={prefecture.prefCode}>
-              <input type="checkbox" />
-              {prefecture.prefName}
-            </label>
-          );
+        {prefectures.map((prefecture, i) => {
+          return <Checkbox prefecture={prefecture} key={i} />;
         })}
       </fieldset>
     </>
