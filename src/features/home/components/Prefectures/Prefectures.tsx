@@ -9,15 +9,15 @@ type Props = {
 };
 
 export function Prefectures({ prefectures }: Props) {
-  const { codes, setCodes } = useSelectedPrefCodesContext();
+  const { setCodes } = useSelectedPrefCodesContext();
 
   function handleOnClick(e: MouseEvent<HTMLInputElement>) {
     const { checked, value } = e.currentTarget;
 
     if (checked) {
-      setCodes([...codes, Number(value)]);
+      setCodes((codes) => [...codes, Number(value)]);
     } else {
-      setCodes(codes.filter((code) => code !== Number(value)));
+      setCodes((codes) => codes.filter((code) => code !== Number(value)));
     }
   }
 
