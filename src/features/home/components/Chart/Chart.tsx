@@ -10,13 +10,9 @@ import {
   YAxis,
 } from "recharts";
 
-import { RadioButton } from "~/features/home/components/RadioButton/RadioButton";
+import { PopulationLabels } from "~/features/home/components/PopulationLabels/PopulationLabels";
 import { usePrefecturesContext } from "~/features/home/contexts/PrefecturesContext";
 import { useSelectedPrefCodesContext } from "~/features/home/contexts/SelectedPrefCodesContext";
-import {
-  populationLabelValues,
-  populationValueToLabel,
-} from "~/features/home/lib/const";
 import { getPopulationData } from "~/features/home/lib/getPopulationData";
 import {
   PopulationType,
@@ -55,24 +51,7 @@ export function Chart() {
 
   return (
     <>
-      <fieldset data-testid="population-types" disabled={codes.length === 0}>
-        {populationLabelValues.map((value, i) => {
-          return (
-            <label key={i}>
-              <RadioButton
-                value={value}
-                selectedValue={type}
-                onChange={(e) => {
-                  if (e.currentTarget.value) {
-                    setType(value);
-                  }
-                }}
-              />
-              {populationValueToLabel[value]}
-            </label>
-          );
-        })}
-      </fieldset>
+      <PopulationLabels type={type} setType={setType} />
       {codes.length === 0 ? (
         <p data-testid="caution-text">都道府県を選択してください</p>
       ) : (
