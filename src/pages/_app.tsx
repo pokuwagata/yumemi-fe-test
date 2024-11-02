@@ -2,7 +2,6 @@ import "destyle.css";
 import "~/styles/global.css";
 import type { AppProps } from "next/app";
 import { useEffect, useState } from "react";
-import { SWRConfig } from "swr";
 
 export default function App({ Component, pageProps }: AppProps) {
   const mockingEnabled = !!process.env.NEXT_PUBLIC_API_MOCKING;
@@ -18,11 +17,5 @@ export default function App({ Component, pageProps }: AppProps) {
     }
   }, [mockingEnabled]);
 
-  return (
-    shouldRender && (
-      <SWRConfig value={{ revalidateOnFocus: false }}>
-        <Component {...pageProps} />
-      </SWRConfig>
-    )
-  );
+  return shouldRender && <Component {...pageProps} />;
 }
