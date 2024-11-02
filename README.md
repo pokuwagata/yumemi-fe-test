@@ -118,6 +118,30 @@ message はコミット内容を表現する文言を日本語で記載する。
 
 `env: Lint の設定を変更`
 
+### コンポーネント
+
+#### margin
+
+コンポーネントの再利用性を高めるため `components` ディレクトリのコンポーネントには `margin` を設定しない。
+import してコンポーネントを使用する側で `margin` を設定する。
+
+#### React.memo
+
+`React.memo` は原則使用せず、レンダリング時の計算量が多いコンポーネントにのみ使用する。
+
+#### useCallback
+
+`useCallback` は以下の場合に使用する。
+
+- `React.memo` でメモ化したコンポーネントの Props に関数を渡す場合（`React.memo` を使用していない場合は Props が re-render 前と同一でも re-render されるため）
+- ContextProvider に関数を渡す場合
+
+例外としてデフォルトで参照が同一になる関数に対して `useCallback` は不要（例: `setState`）
+
+#### useMemo
+
+`useMemo` は計算量が多い処理、または ContextProvider に渡すオブジェクトの参照を同一にするために使用する（ContextProvider の親コンポーネントの re-render 時に ContextProvider の不要な re-render を防ぐため）
+
 ## ディレクトリ構成
 
 ```txt
@@ -164,30 +188,6 @@ message はコミット内容を表現する文言を日本語で記載する。
 ### 参考
 
 - [フロントエンドのディレクトリ設計 (Next.js Pages Router)](https://blog.yn2011.com/posts/2024-08-23-nextjs-fe-directory) (自分が書いたブログ記事)
-
-## コンポーネント
-
-### margin
-
-コンポーネントの再利用性を高めるため `components` ディレクトリのコンポーネントには `margin` を設定しない。
-import してコンポーネントを使用する側で `margin` を設定する。
-
-### React.memo
-
-`React.memo` は原則使用せず、レンダリング時の計算量が多いコンポーネントにのみ使用する。
-
-### useCallback
-
-`useCallback` は以下の場合に使用する。
-
-- `React.memo` でメモ化したコンポーネントの Props に関数を渡す場合（`React.memo` を使用していない場合は Props が re-render 前と同一でも re-render されるため）
-- ContextProvider に関数を渡す場合
-
-例外としてデフォルトで参照が同一になる関数に対して `useCallback` は不要（例: `setState`）
-
-### useMemo
-
-`useMemo` は計算量が多い処理、または ContextProvider に渡すオブジェクトの参照を同一にするために使用する（ContextProvider の親コンポーネントの re-render 時に ContextProvider の不要な re-render を防ぐため）
 
 ## 技術選定
 
