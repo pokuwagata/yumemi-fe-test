@@ -1,14 +1,11 @@
 import { ChangeEvent } from "react";
 
 import { Checkbox } from "~/features/home/components/Checkbox";
+import { usePrefecturesContext } from "~/features/home/contexts/PrefecturesContext";
 import { useSelectedPrefCodesContext } from "~/features/home/contexts/SelectedPrefCodesContext";
-import { Prefecture } from "~/types/api";
 
-type Props = {
-  prefectures: Prefecture[];
-};
-
-export function Prefectures({ prefectures }: Props) {
+export function Prefectures() {
+  const prefectures = usePrefecturesContext();
   const { setCodes } = useSelectedPrefCodesContext();
 
   function handleOnChange(e: ChangeEvent<HTMLInputElement>) {
