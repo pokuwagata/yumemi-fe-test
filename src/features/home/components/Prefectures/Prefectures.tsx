@@ -1,4 +1,4 @@
-import { MouseEvent } from "react";
+import { ChangeEvent } from "react";
 
 import { Checkbox } from "~/features/home/components/Checkbox";
 import { useSelectedPrefCodesContext } from "~/features/home/contexts/SelectedPrefCodesContext";
@@ -11,7 +11,7 @@ type Props = {
 export function Prefectures({ prefectures }: Props) {
   const { setCodes } = useSelectedPrefCodesContext();
 
-  function handleOnClick(e: MouseEvent<HTMLInputElement>) {
+  function handleOnChange(e: ChangeEvent<HTMLInputElement>) {
     const { checked, value } = e.currentTarget;
 
     if (checked) {
@@ -29,7 +29,7 @@ export function Prefectures({ prefectures }: Props) {
           return (
             <Checkbox
               prefecture={prefecture}
-              handleOnClick={handleOnClick}
+              handleOnChange={handleOnChange}
               key={i}
             />
           );

@@ -1,4 +1,4 @@
-import { MouseEventHandler } from "react";
+import { ChangeEventHandler } from "react";
 
 import styles from "./Checkbox.module.css";
 
@@ -7,17 +7,17 @@ import { Prefecture } from "~/types/api";
 
 type Props = {
   prefecture: Prefecture;
-  handleOnClick: MouseEventHandler<HTMLInputElement>;
+  handleOnChange: ChangeEventHandler<HTMLInputElement>;
 };
 
-export function Checkbox({ prefecture, handleOnClick }: Props) {
+export function Checkbox({ prefecture, handleOnChange }: Props) {
   const { codes } = useSelectedPrefCodesContext();
 
   return (
     <label className={styles.checkbox}>
       <input
         type="checkbox"
-        onClick={handleOnClick}
+        onChange={handleOnChange}
         value={prefecture.prefCode}
         checked={codes.includes(prefecture.prefCode)}
       />
