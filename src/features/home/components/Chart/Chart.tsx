@@ -38,9 +38,13 @@ export function Chart({ prefectures }: Props) {
     const rawData: RawPopulationResponses = {};
 
     async function fetchData() {
-      for (const code of codes) {
-        rawData[code] = (await requestPopulation(code)).result.data;
-      }
+      const promises = codes.map((code) => {
+        return (async () => {
+          rawData[code] = (await requestPopulation(code)).result.data;
+        })();
+      });
+
+      await Promise.all(promises);
 
       setData(getPopulationData(rawData, codes, type));
     }
