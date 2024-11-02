@@ -103,5 +103,18 @@ describe("正常系", () => {
     const radios = screen.getByTestId("population-types");
     expect(radios).toBeDisabled();
   });
-  test("都道府県が未選択の場合はグラフが非表示になっていること", async () => {});
+
+  test("都道府県が未選択の場合はグラフが非表示になっていること", async () => {
+    render(<Home prefectures={prefectures.result} />);
+
+    const checkbox = await screen.findByLabelText("北海道");
+
+    const user = userEvent.setup();
+    await user.click(checkbox);
+
+    expect(checkbox).not.toBeChecked();
+
+    const caution = await screen.findByTestId("caution-text");
+    expect(caution).toBeInTheDocument();
+  });
 });
