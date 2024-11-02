@@ -38,5 +38,13 @@
       { "blankLine": "any", "prev": ["const", "let"], "next": ["const", "let"] }
     ],
     "react/function-component-definition": "error"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*.test.tsx"],
+      "rules": {
+        "@stylistic/padding-line-between-statements": ["off"]
+      }
+    }
+  ]
 }

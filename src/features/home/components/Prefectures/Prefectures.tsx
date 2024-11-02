@@ -1,4 +1,7 @@
+import { ChangeEvent } from "react";
+
 import { Checkbox } from "~/features/home/components/Checkbox";
+import { useSelectedPrefCodesContext } from "~/features/home/contexts/SelectedPrefCodesContext";
 import { Prefecture } from "~/types/api";
 
 type Props = {
@@ -6,12 +9,30 @@ type Props = {
 };
 
 export function Prefectures({ prefectures }: Props) {
+  const { setCodes } = useSelectedPrefCodesContext();
+
+  function handleOnChange(e: ChangeEvent<HTMLInputElement>) {
+    const { checked, value } = e.currentTarget;
+
+    if (checked) {
+      setCodes((codes) => [...codes, Number(value)]);
+    } else {
+      setCodes((codes) => codes.filter((code) => code !== Number(value)));
+    }
+  }
+
   return (
     <>
       <h2>都道府県</h2>
       <fieldset>
         {prefectures.map((prefecture, i) => {
-          return <Checkbox prefecture={prefecture} key={i} />;
+          return (
+            <Checkbox
+              prefecture={prefecture}
+              handleOnChange={handleOnChange}
+              key={i}
+            />
+          );
         })}
       </fieldset>
     </>
