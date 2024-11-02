@@ -4,6 +4,7 @@ import {
   ReactNode,
   SetStateAction,
   useContext,
+  useMemo,
   useState,
 } from "react";
 
@@ -33,8 +34,15 @@ export function SelectedPrefCodesContextProvider({
 }) {
   const [codes, setCodes] = useState<number[]>([1]);
 
+  const contextValue = useMemo(() => {
+    return {
+      codes,
+      setCodes,
+    };
+  }, [codes, setCodes]);
+
   return (
-    <SelectedPrefCodesContext.Provider value={{ codes, setCodes }}>
+    <SelectedPrefCodesContext.Provider value={contextValue}>
       {children}
     </SelectedPrefCodesContext.Provider>
   );
