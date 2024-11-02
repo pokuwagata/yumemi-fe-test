@@ -41,11 +41,9 @@ describe("正常系", () => {
     const { container } = render(<Home prefectures={prefectures.result} />);
 
     const checkbox = await screen.findByLabelText("北海道");
-
     expect(checkbox).toBeChecked();
 
     const radio = screen.getByLabelText("総人口");
-
     expect(radio).toBeChecked();
 
     await waitFor(() => {
@@ -59,8 +57,8 @@ describe("正常系", () => {
     const { container } = render(<Home prefectures={prefectures.result} />);
 
     const checkbox = await screen.findByLabelText("青森県");
-    const user = userEvent.setup();
 
+    const user = userEvent.setup();
     await user.click(checkbox);
 
     await waitFor(() => {
@@ -82,7 +80,6 @@ describe("正常系", () => {
     const radio = screen.getByLabelText("年少人口");
 
     const user = userEvent.setup();
-
     await user.click(radio);
     expect(radio).toBeChecked();
 
@@ -92,4 +89,7 @@ describe("正常系", () => {
       expect(line).toMatchSnapshot();
     });
   });
+
+  test("都道府県が未選択の場合は人口動態の種別を切り替えられないこと", async () => {});
+  test("都道府県が未選択の場合はグラフが非表示になっていること", async () => {});
 });
