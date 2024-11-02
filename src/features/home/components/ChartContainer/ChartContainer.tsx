@@ -21,7 +21,7 @@ import {
 import { RechartsDataItem } from "~/features/home/types/recharts";
 import { requestPopulation } from "~/lib/requestPopulation";
 
-export function Chart() {
+export function ChartContainer() {
   const prefectures = usePrefecturesContext();
   const { codes } = useSelectedPrefCodesContext();
 

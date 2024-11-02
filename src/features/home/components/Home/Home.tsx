@@ -1,6 +1,6 @@
 import styles from "./Home.module.css";
 
-import { Chart } from "~/features/home/components/Chart";
+import { ChartContainer } from "~/features/home/components/ChartContainer";
 import { Header } from "~/features/home/components/Header/Header";
 import { Prefectures } from "~/features/home/components/Prefectures";
 import { PrefecturesContextProvider } from "~/features/home/contexts/PrefecturesContext";
@@ -24,7 +24,7 @@ export function Home({ prefectures }: Props) {
               <div className={styles.prefectures}>
                 <Prefectures />
               </div>
-              <Chart />
+              <ChartContainer />
             </SelectedPrefCodesContextProvider>
           </PrefecturesContextProvider>
         </section>
