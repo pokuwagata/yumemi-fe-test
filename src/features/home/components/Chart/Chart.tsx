@@ -50,7 +50,7 @@ export function Chart({ prefectures }: Props) {
 
   return (
     <>
-      <fieldset>
+      <fieldset data-testid="population-types" disabled={codes.length === 0}>
         {populationLabelValues.map((value, i) => {
           return (
             <label key={i}>
