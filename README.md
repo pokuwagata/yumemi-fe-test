@@ -43,6 +43,20 @@ pnpm をインストールする。
 
 [インストール手順](https://pnpm.io/installation)
 
+npm パッケージをインストールする。
+
+```shell
+pnpm i
+```
+
+### 環境変数定義
+
+RESAS-API の API KEY を取得し、以下の内容で`.env` ファイルを作成する。
+
+```
+NEXT_PUBLIC_API_KEY=your-api-key
+```
+
 ## 起動手順
 
 ```shell
