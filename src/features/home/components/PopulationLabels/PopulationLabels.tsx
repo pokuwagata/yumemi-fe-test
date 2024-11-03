@@ -1,6 +1,8 @@
 import { Dispatch, SetStateAction } from "react";
 
-import { Text } from "~/components/Text";
+import styles from "./PopulationLabels.module.css";
+
+import { FieldsTitle } from "~/features/home/components/FieldsTitle/FieldsTitle";
 import { RadioButton } from "~/features/home/components/RadioButton/RadioButton";
 import { useSelectedPrefCodesContext } from "~/features/home/contexts/SelectedPrefCodesContext";
 import {
@@ -18,11 +20,19 @@ export function PopulationLabels({ type, setType }: Props) {
   const { codes } = useSelectedPrefCodesContext();
 
   return (
-    <fieldset data-testid="population-types" disabled={codes.length === 0}>
-      {populationLabelValues.map((value, i) => {
-        return (
-          <label key={i}>
+    <>
+      <h2>
+        <FieldsTitle>種別</FieldsTitle>
+      </h2>
+      <fieldset
+        data-testid="population-types"
+        disabled={codes.length === 0}
+        className={styles.list}
+      >
+        {populationLabelValues.map((value, i) => {
+          return (
             <RadioButton
+              key={i}
               value={value}
               selectedValue={type}
               onChange={(e) => {
@@ -30,13 +40,12 @@ export function PopulationLabels({ type, setType }: Props) {
                   setType(value);
                 }
               }}
-            />
-            <Text fontSize="lg" fontWeight="normal">
+            >
               {populationValueToLabel[value]}
-            </Text>
-          </label>
-        );
-      })}
-    </fieldset>
+            </RadioButton>
+          );
+        })}
+      </fieldset>
+    </>
   );
 }

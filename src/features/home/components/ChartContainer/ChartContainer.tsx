@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import styles from "./ChartContainer.module.css";
+
 import { Text } from "~/components/Text";
 import { ChartPresenter } from "~/features/home/components/ChartPresenter/ChartPresenter";
 import { PopulationLabels } from "~/features/home/components/PopulationLabels/PopulationLabels";
@@ -16,7 +18,9 @@ export function ChartContainer() {
 
   return (
     <>
-      <PopulationLabels type={type} setType={setType} />
+      <div className={styles.labels}>
+        <PopulationLabels type={type} setType={setType} />
+      </div>
       {codes.length === 0 ? (
         <p data-testid="caution-text">
           <Text fontSize="md" fontWeight="normal">
