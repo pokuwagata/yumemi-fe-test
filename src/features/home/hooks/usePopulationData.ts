@@ -11,6 +11,7 @@ import { requestPopulation } from "~/lib/requestPopulation";
 export function usePopulationData(codes: number[], type: PopulationType) {
   const [data, setData] = useState<RechartsDataItem[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<Error>();
 
   useEffect(() => {
     const rawData: RawPopulationResponses = {};
@@ -23,14 +24,20 @@ export function usePopulationData(codes: number[], type: PopulationType) {
       });
 
       setIsLoading(true);
-      await Promise.all(promises);
 
-      setData(getPopulationData(rawData, codes, type));
-      setIsLoading(false);
+      try {
+        await Promise.all(promises);
+        setData(getPopulationData(rawData, codes, type));
+        setIsLoading(false);
+      } catch (e) {
+        if (e instanceof Error) {
+          setError(e);
+        }
+      }
     }
 
     fetchData();
   }, [codes, type]);
 
-  return { data, isLoading };
+  return { data, isLoading, error };
 }

@@ -6,6 +6,58 @@ import prefectures from "./prefectures.json";
 
 import { API_BASE_URL } from "~/lib/const";
 
+export function getErrorDetail(code: string) {
+  let statusCode;
+  let body;
+
+  switch (code) {
+    case "400":
+      statusCode = 200;
+      body = "400";
+
+      break;
+    case "403":
+      statusCode = 200;
+
+      body = {
+        statusCode: "403",
+        message: "Forbidden.",
+        description: "",
+      };
+
+      break;
+    case "404-1":
+      statusCode = 200;
+
+      body = {
+        statusCode: "404",
+        message: "404. That's an error.",
+        description: "The requested URL /404 was not found on this server.",
+      };
+
+      break;
+    case "404-2":
+      statusCode = 200;
+      body = "404";
+      break;
+    case "429":
+      statusCode = 429;
+
+      body = {
+        message: null,
+      };
+
+      break;
+    case "500":
+      statusCode = 500;
+
+      body = "Server Error";
+      break;
+  }
+
+  return { statusCode, body };
+}
+
 export const handlers = [
   http.get(`${API_BASE_URL}/v1/prefectures`, () => {
     return HttpResponse.json(prefectures);
@@ -13,6 +65,18 @@ export const handlers = [
   http.get(
     `${API_BASE_URL}/v1/population/composition/perYear`,
     ({ request }) => {
+      // エラーレスポンスをモックする場合は以下の実装を利用する
+
+      // const errorCode = "500";
+
+      // if (errorCode) {
+      //   const { statusCode, body } = getErrorDetail(errorCode);
+
+      //   return HttpResponse.json(body, {
+      //     status: statusCode,
+      //   });
+      // }
+
       const url = new URL(request.url);
 
       const prefCode = url.searchParams.get("prefCode");

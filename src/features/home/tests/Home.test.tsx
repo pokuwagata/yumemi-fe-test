@@ -1,10 +1,19 @@
 import "@testing-library/jest-dom/vitest";
-import { render, screen, waitFor } from "@testing-library/react";
+import {
+  render,
+  screen,
+  waitFor,
+  waitForElementToBeRemoved,
+} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { http, HttpResponse } from "msw";
 import { ReactElement } from "react";
 import { beforeAll, afterEach, afterAll } from "vitest";
 
 import { Home } from "~/features/home/components/Home";
+import { populationCache } from "~/features/home/lib/populationCache";
+import { API_BASE_URL } from "~/lib/const";
+import { getErrorDetail } from "~/mocks/handlers";
 import prefectures from "~/mocks/prefectures.json";
 import { server } from "~/mocks/server";
 
@@ -18,7 +27,10 @@ beforeAll(() => {
   server.listen();
 });
 
-afterEach(() => server.resetHandlers());
+afterEach(() => {
+  server.resetHandlers();
+  populationCache.clear();
+});
 afterAll(() => server.close());
 
 // @see https://github.com/recharts/recharts/issues/2982#issuecomment-1545948222
@@ -116,5 +128,82 @@ describe("正常系", () => {
 
     const caution = await screen.findByTestId("caution-text");
     expect(caution).toBeInTheDocument();
+  });
+});
+
+describe("異常系", () => {
+  describe("API エラーレスポンスに対して適切なエラーメッセージを表示すること", () => {
+    function mockAPIError(errorCode: string) {
+      server.use(
+        http.get(`${API_BASE_URL}/v1/population/composition/perYear`, () => {
+          const { statusCode, body } = getErrorDetail(errorCode);
+
+          return HttpResponse.json(body, {
+            status: statusCode,
+          });
+        }),
+      );
+    }
+
+    beforeAll(() => {
+      // eslint-disable-next-line no-console
+      console.error = vi.fn();
+    });
+    test("API エラーレスポンスが 400 の場合", async () => {
+      mockAPIError("400");
+
+      render(<Home prefectures={prefectures.result} />);
+
+      await waitForElementToBeRemoved(() => screen.queryByText("Loading"));
+
+      const message = await screen.findByText("400 Bad Request");
+
+      expect(message).toBeInTheDocument();
+    });
+    test("API エラーレスポンスが 403 の場合", async () => {
+      mockAPIError("403");
+
+      render(<Home prefectures={prefectures.result} />);
+
+      const message = await screen.findByText("403 Forbidden");
+
+      expect(message).toBeInTheDocument();
+    });
+    test("API エラーレスポンスが 404 かつレスポンスボディが object の場合", async () => {
+      mockAPIError("404-1");
+
+      render(<Home prefectures={prefectures.result} />);
+
+      const message = await screen.findByText("404 NotFound");
+
+      expect(message).toBeInTheDocument();
+    });
+    test("API エラーレスポンスが 404 かつレスポンスボディが string の場合", async () => {
+      mockAPIError("404-2");
+
+      render(<Home prefectures={prefectures.result} />);
+
+      const message = await screen.findByText("404 NotFound");
+
+      expect(message).toBeInTheDocument();
+    });
+    test("API エラーレスポンスが 429 の場合", async () => {
+      mockAPIError("429");
+
+      render(<Home prefectures={prefectures.result} />);
+
+      const message = await screen.findByText("429 Too Many Requests");
+
+      expect(message).toBeInTheDocument();
+    });
+    test("API エラーレスポンスが 500 の場合", async () => {
+      mockAPIError("500");
+
+      render(<Home prefectures={prefectures.result} />);
+
+      const message = await screen.findByText("500 Server Error");
+
+      expect(message).toBeInTheDocument();
+    });
   });
 });
