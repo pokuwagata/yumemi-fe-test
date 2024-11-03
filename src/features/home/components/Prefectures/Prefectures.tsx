@@ -22,7 +22,7 @@ export function Prefectures() {
   return (
     <>
       <h2>
-        <Text fontSize="xl" fontWeight="medium">
+        <Text fontSize="lg" fontWeight="medium">
           都道府県
         </Text>
       </h2>

@@ -18,7 +18,11 @@ export function ChartContainer() {
     <>
       <PopulationLabels type={type} setType={setType} />
       {codes.length === 0 ? (
-        <p data-testid="caution-text">都道府県を選択してください</p>
+        <p data-testid="caution-text">
+          <Text fontSize="md" fontWeight="normal">
+            都道府県を選択してください
+          </Text>
+        </p>
       ) : (
         <>
           <ChartPresenter data={data} />
