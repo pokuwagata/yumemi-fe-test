@@ -6,7 +6,7 @@ import prefectures from "./prefectures.json";
 
 import { API_BASE_URL } from "~/lib/const";
 
-function mockError(code: string) {
+export function mockError(code: string) {
   let statusCode;
   let body;
 
@@ -48,6 +48,11 @@ function mockError(code: string) {
       };
 
       break;
+    case "500":
+      statusCode = 500;
+
+      body = "Server Error";
+      break;
   }
 
   return { statusCode, body };
@@ -60,15 +65,17 @@ export const handlers = [
   http.get(
     `${API_BASE_URL}/v1/population/composition/perYear`,
     ({ request }) => {
-      const errorCode = "400";
+      // エラーレスポンスをモックする場合は以下の実装を利用する
 
-      if (errorCode) {
-        const { statusCode, body } = mockError(errorCode);
+      // const errorCode = "500";
 
-        return HttpResponse.json(body, {
-          status: statusCode,
-        });
-      }
+      // if (errorCode) {
+      //   const { statusCode, body } = mockError(errorCode);
+
+      //   return HttpResponse.json(body, {
+      //     status: statusCode,
+      //   });
+      // }
 
       const url = new URL(request.url);
 
