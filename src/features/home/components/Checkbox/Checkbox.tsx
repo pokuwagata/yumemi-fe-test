@@ -15,12 +15,13 @@ export function Checkbox({ prefecture, handleOnChange }: Props) {
   const { codes } = useSelectedPrefCodesContext();
 
   return (
-    <label className={styles.checkbox}>
+    <label className={styles.label}>
       <input
         type="checkbox"
         onChange={handleOnChange}
         value={prefecture.prefCode}
         checked={codes.includes(prefecture.prefCode)}
+        className={styles.checkbox}
       />
       <Text fontSize="lg" fontWeight="normal">
         {prefecture.prefName}
