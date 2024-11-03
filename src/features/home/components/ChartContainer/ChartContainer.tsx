@@ -9,7 +9,9 @@ import { PopulationType } from "~/features/home/types/api";
 export function ChartContainer() {
   const { codes } = useSelectedPrefCodesContext();
   const [type, setType] = useState<PopulationType>(0);
-  const { data, isLoading } = usePopulationData(codes, type);
+  const { data, isLoading, error } = usePopulationData(codes, type);
+
+  if (error) throw error;
 
   return (
     <>
