@@ -6,7 +6,7 @@ import prefectures from "./prefectures.json";
 
 import { API_BASE_URL } from "~/lib/const";
 
-export function mockError(code: string) {
+export function getErrorDetail(code: string) {
   let statusCode;
   let body;
 
@@ -70,7 +70,7 @@ export const handlers = [
       // const errorCode = "500";
 
       // if (errorCode) {
-      //   const { statusCode, body } = mockError(errorCode);
+      //   const { statusCode, body } = getErrorDetail(errorCode);
 
       //   return HttpResponse.json(body, {
       //     status: statusCode,
