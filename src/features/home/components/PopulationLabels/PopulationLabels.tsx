@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 
+import { Text } from "~/components/Text";
 import { RadioButton } from "~/features/home/components/RadioButton/RadioButton";
 import { useSelectedPrefCodesContext } from "~/features/home/contexts/SelectedPrefCodesContext";
 import {
@@ -7,7 +8,6 @@ import {
   populationValueToLabel,
 } from "~/features/home/lib/const";
 import { PopulationType } from "~/features/home/types/api";
-import { Text } from "~/components/Text";
 
 type Props = {
   type: PopulationType;

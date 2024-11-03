@@ -1,9 +1,9 @@
 import { ChangeEvent } from "react";
 
+import { Text } from "~/components/Text";
 import { Checkbox } from "~/features/home/components/Checkbox";
 import { usePrefecturesContext } from "~/features/home/contexts/PrefecturesContext";
 import { useSelectedPrefCodesContext } from "~/features/home/contexts/SelectedPrefCodesContext";
-import { Text } from "~/components/Text";
 
 export function Prefectures() {
   const prefectures = usePrefecturesContext();

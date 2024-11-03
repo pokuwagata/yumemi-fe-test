@@ -10,5 +10,6 @@ type Props = {
 
 export function Text({ fontSize, fontWeight, children }: Props) {
   const classes = [styles[fontSize], styles[fontWeight]].join(" ");
+
   return <span className={classes}>{children}</span>;
 }

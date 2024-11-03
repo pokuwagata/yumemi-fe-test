@@ -1,4 +1,5 @@
 import { FallbackProps } from "react-error-boundary";
+
 import { Text } from "~/components/Text";
 
 export function Fallback({ error }: FallbackProps) {

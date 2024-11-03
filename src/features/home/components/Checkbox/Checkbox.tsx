@@ -2,9 +2,9 @@ import { ChangeEventHandler } from "react";
 
 import styles from "./Checkbox.module.css";
 
+import { Text } from "~/components/Text";
 import { useSelectedPrefCodesContext } from "~/features/home/contexts/SelectedPrefCodesContext";
 import { Prefecture } from "~/types/api";
-import { Text } from "~/components/Text";
 
 type Props = {
   prefecture: Prefecture;

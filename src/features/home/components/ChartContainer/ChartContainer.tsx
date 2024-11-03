@@ -1,11 +1,11 @@
 import { useState } from "react";
 
+import { Text } from "~/components/Text";
 import { ChartPresenter } from "~/features/home/components/ChartPresenter/ChartPresenter";
 import { PopulationLabels } from "~/features/home/components/PopulationLabels/PopulationLabels";
 import { useSelectedPrefCodesContext } from "~/features/home/contexts/SelectedPrefCodesContext";
 import { usePopulationData } from "~/features/home/hooks/usePopulationData";
 import { PopulationType } from "~/features/home/types/api";
-import { Text } from "~/components/Text";
 
 export function ChartContainer() {
   const { codes } = useSelectedPrefCodesContext();
