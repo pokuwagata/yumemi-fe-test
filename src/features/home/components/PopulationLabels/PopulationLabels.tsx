@@ -7,6 +7,7 @@ import {
   populationValueToLabel,
 } from "~/features/home/lib/const";
 import { PopulationType } from "~/features/home/types/api";
+import { Text } from "~/components/Text";
 
 type Props = {
   type: PopulationType;
@@ -30,7 +31,9 @@ export function PopulationLabels({ type, setType }: Props) {
                 }
               }}
             />
-            {populationValueToLabel[value]}
+            <Text fontSize="lg" fontWeight="normal">
+              {populationValueToLabel[value]}
+            </Text>
           </label>
         );
       })}

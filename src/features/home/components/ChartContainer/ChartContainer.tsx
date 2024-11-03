@@ -5,6 +5,7 @@ import { PopulationLabels } from "~/features/home/components/PopulationLabels/Po
 import { useSelectedPrefCodesContext } from "~/features/home/contexts/SelectedPrefCodesContext";
 import { usePopulationData } from "~/features/home/hooks/usePopulationData";
 import { PopulationType } from "~/features/home/types/api";
+import { Text } from "~/components/Text";
 
 export function ChartContainer() {
   const { codes } = useSelectedPrefCodesContext();
@@ -21,7 +22,13 @@ export function ChartContainer() {
       ) : (
         <>
           <ChartPresenter data={data} />
-          {isLoading && <p>Loading</p>}
+          {isLoading && (
+            <p>
+              <Text fontSize="md" fontWeight="normal">
+                Loading
+              </Text>
+            </p>
+          )}
         </>
       )}
     </>

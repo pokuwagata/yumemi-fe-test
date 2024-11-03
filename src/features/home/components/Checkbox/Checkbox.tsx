@@ -4,6 +4,7 @@ import styles from "./Checkbox.module.css";
 
 import { useSelectedPrefCodesContext } from "~/features/home/contexts/SelectedPrefCodesContext";
 import { Prefecture } from "~/types/api";
+import { Text } from "~/components/Text";
 
 type Props = {
   prefecture: Prefecture;
@@ -21,7 +22,9 @@ export function Checkbox({ prefecture, handleOnChange }: Props) {
         value={prefecture.prefCode}
         checked={codes.includes(prefecture.prefCode)}
       />
-      {prefecture.prefName}
+      <Text fontSize="lg" fontWeight="normal">
+        {prefecture.prefName}
+      </Text>
     </label>
   );
 }

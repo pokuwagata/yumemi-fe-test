@@ -3,6 +3,7 @@ import { ChangeEvent } from "react";
 import { Checkbox } from "~/features/home/components/Checkbox";
 import { usePrefecturesContext } from "~/features/home/contexts/PrefecturesContext";
 import { useSelectedPrefCodesContext } from "~/features/home/contexts/SelectedPrefCodesContext";
+import { Text } from "~/components/Text";
 
 export function Prefectures() {
   const prefectures = usePrefecturesContext();
@@ -20,7 +21,11 @@ export function Prefectures() {
 
   return (
     <>
-      <h2>都道府県</h2>
+      <h2>
+        <Text fontSize="xl" fontWeight="medium">
+          都道府県
+        </Text>
+      </h2>
       <fieldset>
         {prefectures.map((prefecture, i) => {
           return (
