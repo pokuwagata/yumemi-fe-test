@@ -1,6 +1,8 @@
-import { Text } from "~/components/Text";
-import styles from "./FieldsTitle.module.css";
 import { ReactNode } from "react";
+
+import styles from "./FieldsTitle.module.css";
+
+import { Text } from "~/components/Text";
 
 type Props = {
   children: ReactNode;

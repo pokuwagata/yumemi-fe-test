@@ -1,10 +1,11 @@
 import { ChangeEvent } from "react";
 
+import styles from "./Prefectures.module.css";
+
 import { Checkbox } from "~/features/home/components/Checkbox";
+import { FieldsTitle } from "~/features/home/components/FieldsTitle/FieldsTitle";
 import { usePrefecturesContext } from "~/features/home/contexts/PrefecturesContext";
 import { useSelectedPrefCodesContext } from "~/features/home/contexts/SelectedPrefCodesContext";
-import styles from "./Prefectures.module.css";
-import { FieldsTitle } from "~/features/home/components/FieldsTitle/FieldsTitle";
 
 export function Prefectures() {
   const prefectures = usePrefecturesContext();
