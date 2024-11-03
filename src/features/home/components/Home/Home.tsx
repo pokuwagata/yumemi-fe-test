@@ -1,6 +1,9 @@
+import { ErrorBoundary } from "react-error-boundary";
+
 import styles from "./Home.module.css";
 
 import { ChartContainer } from "~/features/home/components/ChartContainer";
+import { Fallback } from "~/features/home/components/Fallback/Fallback";
 import { Header } from "~/features/home/components/Header/Header";
 import { Prefectures } from "~/features/home/components/Prefectures";
 import { PrefecturesContextProvider } from "~/features/home/contexts/PrefecturesContext";
@@ -19,14 +22,16 @@ export function Home({ prefectures }: Props) {
       </div>
       <main>
         <section>
-          <PrefecturesContextProvider prefectures={prefectures}>
-            <SelectedPrefCodesContextProvider>
-              <div className={styles.prefectures}>
-                <Prefectures />
-              </div>
-              <ChartContainer />
-            </SelectedPrefCodesContextProvider>
-          </PrefecturesContextProvider>
+          <ErrorBoundary FallbackComponent={Fallback}>
+            <PrefecturesContextProvider prefectures={prefectures}>
+              <SelectedPrefCodesContextProvider>
+                <div className={styles.prefectures}>
+                  <Prefectures />
+                </div>
+                <ChartContainer />
+              </SelectedPrefCodesContextProvider>
+            </PrefecturesContextProvider>
+          </ErrorBoundary>
         </section>
       </main>
     </div>
