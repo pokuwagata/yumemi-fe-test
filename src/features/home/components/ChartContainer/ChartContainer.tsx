@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import { Text } from "~/components/Text";
 import { ChartPresenter } from "~/features/home/components/ChartPresenter/ChartPresenter";
 import { PopulationLabels } from "~/features/home/components/PopulationLabels/PopulationLabels";
 import { useSelectedPrefCodesContext } from "~/features/home/contexts/SelectedPrefCodesContext";
@@ -17,11 +18,21 @@ export function ChartContainer() {
     <>
       <PopulationLabels type={type} setType={setType} />
       {codes.length === 0 ? (
-        <p data-testid="caution-text">都道府県を選択してください</p>
+        <p data-testid="caution-text">
+          <Text fontSize="md" fontWeight="normal">
+            都道府県を選択してください
+          </Text>
+        </p>
       ) : (
         <>
           <ChartPresenter data={data} />
-          {isLoading && <p>Loading</p>}
+          {isLoading && (
+            <p>
+              <Text fontSize="md" fontWeight="normal">
+                Loading
+              </Text>
+            </p>
+          )}
         </>
       )}
     </>

@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 
+import { Text } from "~/components/Text";
 import { RadioButton } from "~/features/home/components/RadioButton/RadioButton";
 import { useSelectedPrefCodesContext } from "~/features/home/contexts/SelectedPrefCodesContext";
 import {
@@ -30,7 +31,9 @@ export function PopulationLabels({ type, setType }: Props) {
                 }
               }}
             />
-            {populationValueToLabel[value]}
+            <Text fontSize="lg" fontWeight="normal">
+              {populationValueToLabel[value]}
+            </Text>
           </label>
         );
       })}
