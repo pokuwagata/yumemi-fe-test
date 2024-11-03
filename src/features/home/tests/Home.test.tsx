@@ -1,11 +1,17 @@
 import "@testing-library/jest-dom/vitest";
-import { render, screen, waitFor } from "@testing-library/react";
+import {
+  render,
+  screen,
+  waitFor,
+  waitForElementToBeRemoved,
+} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { http, HttpResponse } from "msw";
 import { ReactElement } from "react";
 import { beforeAll, afterEach, afterAll } from "vitest";
 
 import { Home } from "~/features/home/components/Home";
+import { populationCache } from "~/features/home/lib/populationCache";
 import { API_BASE_URL } from "~/lib/const";
 import { getErrorDetail } from "~/mocks/handlers";
 import prefectures from "~/mocks/prefectures.json";
@@ -21,7 +27,10 @@ beforeAll(() => {
   server.listen();
 });
 
-afterEach(() => server.resetHandlers());
+afterEach(() => {
+  server.resetHandlers();
+  populationCache.clear();
+});
 afterAll(() => server.close());
 
 // @see https://github.com/recharts/recharts/issues/2982#issuecomment-1545948222
@@ -144,6 +153,8 @@ describe("異常系", () => {
       mockAPIError("400");
 
       render(<Home prefectures={prefectures.result} />);
+
+      await waitForElementToBeRemoved(() => screen.queryByText("Loading"));
 
       const message = await screen.findByText("400 Bad Request");
 
