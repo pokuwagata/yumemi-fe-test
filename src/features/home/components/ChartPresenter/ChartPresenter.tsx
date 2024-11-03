@@ -1,6 +1,7 @@
 import {
   CartesianGrid,
   Label,
+  Legend,
   Line,
   LineChart,
   ResponsiveContainer,
@@ -48,6 +49,7 @@ export function ChartPresenter({ data }: Props) {
             );
           })}
           <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+          <Legend verticalAlign="top" wrapperStyle={{ top: 0 }} />
           <Tooltip />
         </LineChart>
       </ResponsiveContainer>
