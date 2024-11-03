@@ -1,5 +1,7 @@
 import { ChangeEventHandler, ReactNode } from "react";
 
+import styles from "./RadioButton.module.css";
+
 import { Text } from "~/components/Text";
 
 type Props = {
@@ -16,11 +18,12 @@ export function RadioButton({
   children,
 }: Props) {
   return (
-    <label>
+    <label className={styles.label}>
       <input
         type="radio"
         checked={value === selectedValue}
         onChange={onChange}
+        className={styles.radio}
       />
       <Text fontSize="lg" fontWeight="normal">
         {children}
