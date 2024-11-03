@@ -4,6 +4,7 @@ import { Text } from "~/components/Text";
 import { Checkbox } from "~/features/home/components/Checkbox";
 import { usePrefecturesContext } from "~/features/home/contexts/PrefecturesContext";
 import { useSelectedPrefCodesContext } from "~/features/home/contexts/SelectedPrefCodesContext";
+import styles from "./Prefectures.module.css";
 
 export function Prefectures() {
   const prefectures = usePrefecturesContext();
@@ -21,12 +22,12 @@ export function Prefectures() {
 
   return (
     <>
-      <h2>
+      <h2 className={styles.title}>
         <Text fontSize="lg" fontWeight="medium">
           都道府県
         </Text>
       </h2>
-      <fieldset>
+      <fieldset className={styles.list}>
         {prefectures.map((prefecture, i) => {
           return (
             <Checkbox
