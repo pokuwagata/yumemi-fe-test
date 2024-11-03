@@ -1,6 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
 
-import { Text } from "~/components/Text";
 import { RadioButton } from "~/features/home/components/RadioButton/RadioButton";
 import { useSelectedPrefCodesContext } from "~/features/home/contexts/SelectedPrefCodesContext";
 import {
@@ -21,20 +20,18 @@ export function PopulationLabels({ type, setType }: Props) {
     <fieldset data-testid="population-types" disabled={codes.length === 0}>
       {populationLabelValues.map((value, i) => {
         return (
-          <label key={i}>
-            <RadioButton
-              value={value}
-              selectedValue={type}
-              onChange={(e) => {
-                if (e.currentTarget.value) {
-                  setType(value);
-                }
-              }}
-            />
-            <Text fontSize="lg" fontWeight="normal">
-              {populationValueToLabel[value]}
-            </Text>
-          </label>
+          <RadioButton
+            key={i}
+            value={value}
+            selectedValue={type}
+            onChange={(e) => {
+              if (e.currentTarget.value) {
+                setType(value);
+              }
+            }}
+          >
+            {populationValueToLabel[value]}
+          </RadioButton>
         );
       })}
     </fieldset>
