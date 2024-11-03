@@ -1,5 +1,7 @@
 .title {
+  padding-bottom: calc(var(--space-unit) * 2);
   margin-bottom: calc(var(--space-unit) * 2);
+  border-bottom: 1px solid var(--stale-800);
 }
 
 .list {
