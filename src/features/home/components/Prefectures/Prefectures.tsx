@@ -2,8 +2,8 @@ import { ChangeEvent } from "react";
 
 import styles from "./Prefectures.module.css";
 
-import { Checkbox } from "~/features/home/components/Checkbox";
-import { FieldsTitle } from "~/features/home/components/FieldsTitle/FieldsTitle";
+import { CheckboxContainer } from "~/features/home/components/CheckboxContainer";
+import { FieldsTitle } from "~/features/home/components/FieldsTitle";
 import { usePrefecturesContext } from "~/features/home/contexts/PrefecturesContext";
 import { useSelectedPrefCodesContext } from "~/features/home/contexts/SelectedPrefCodesContext";
 
@@ -29,7 +29,7 @@ export function Prefectures() {
       <fieldset className={styles.list}>
         {prefectures.map((prefecture, i) => {
           return (
-            <Checkbox
+            <CheckboxContainer
               prefecture={prefecture}
               handleOnChange={handleOnChange}
               key={i}
