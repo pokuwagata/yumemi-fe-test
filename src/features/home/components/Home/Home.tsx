@@ -2,9 +2,9 @@ import { ErrorBoundary } from "react-error-boundary";
 
 import styles from "./Home.module.css";
 
+import { Header } from "~/components/Header";
 import { ChartContainer } from "~/features/home/components/ChartContainer";
-import { Fallback } from "~/features/home/components/Fallback/Fallback";
-import { Header } from "~/features/home/components/Header/Header";
+import { Fallback } from "~/features/home/components/Fallback";
 import { Prefectures } from "~/features/home/components/Prefectures";
 import { PrefecturesContextProvider } from "~/features/home/contexts/PrefecturesContext";
 import { SelectedPrefCodesContextProvider } from "~/features/home/contexts/SelectedPrefCodesContext";

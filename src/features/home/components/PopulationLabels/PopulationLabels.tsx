@@ -2,8 +2,8 @@ import { Dispatch, SetStateAction } from "react";
 
 import styles from "./PopulationLabels.module.css";
 
-import { FieldsTitle } from "~/features/home/components/FieldsTitle/FieldsTitle";
-import { RadioButton } from "~/features/home/components/RadioButton/RadioButton";
+import { RadioButton } from "~/components/RadioButton";
+import { FieldsTitle } from "~/features/home/components/FieldsTitle";
 import { useSelectedPrefCodesContext } from "~/features/home/contexts/SelectedPrefCodesContext";
 import {
   populationLabelValues,
