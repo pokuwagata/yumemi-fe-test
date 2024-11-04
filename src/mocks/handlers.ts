@@ -4,7 +4,7 @@ import population1 from "./population-1.json";
 import population2 from "./population-2.json";
 import prefectures from "./prefectures.json";
 
-import { API_BASE_URL } from "~/lib/const";
+import { API_BASE_URL, PROXY_API_PATH } from "~/lib/const";
 
 export function getErrorDetail(code: string) {
   let statusCode;
@@ -62,39 +62,36 @@ export const handlers = [
   http.get(`${API_BASE_URL}/v1/prefectures`, () => {
     return HttpResponse.json(prefectures);
   }),
-  http.get(
-    `${API_BASE_URL}/v1/population/composition/perYear`,
-    ({ request }) => {
-      // エラーレスポンスをモックする場合は以下の実装を利用する
+  http.get(`${PROXY_API_PATH}/population`, ({ request }) => {
+    // エラーレスポンスをモックする場合は以下の実装を利用する
 
-      // const errorCode = "500";
+    // const errorCode = "500";
 
-      // if (errorCode) {
-      //   const { statusCode, body } = getErrorDetail(errorCode);
+    // if (errorCode) {
+    //   const { statusCode, body } = getErrorDetail(errorCode);
 
-      //   return HttpResponse.json(body, {
-      //     status: statusCode,
-      //   });
-      // }
+    //   return HttpResponse.json(body, {
+    //     status: statusCode,
+    //   });
+    // }
 
-      const url = new URL(request.url);
+    const url = new URL(request.url);
 
-      const prefCode = url.searchParams.get("prefCode");
+    const prefCode = url.searchParams.get("prefCode");
 
-      let population;
+    let population;
 
-      switch (prefCode) {
-        case "1":
-          population = population1;
-          break;
-        case "2":
-          population = population2;
-          break;
-        default:
-          population = population1;
-      }
+    switch (prefCode) {
+      case "1":
+        population = population1;
+        break;
+      case "2":
+        population = population2;
+        break;
+      default:
+        population = population1;
+    }
 
-      return HttpResponse.json(population);
-    },
-  ),
+    return HttpResponse.json(population);
+  }),
 ];
