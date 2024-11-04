@@ -12,7 +12,7 @@ import { beforeAll, afterEach, afterAll } from "vitest";
 
 import { Home } from "~/features/home/components/Home";
 import { populationCache } from "~/features/home/lib/populationCache";
-import { API_BASE_URL } from "~/lib/const";
+import { PROXY_API_PATH } from "~/lib/const";
 import { getErrorDetail } from "~/mocks/handlers";
 import prefectures from "~/mocks/prefectures.json";
 import { server } from "~/mocks/server";
@@ -135,7 +135,7 @@ describe("異常系", () => {
   describe("API エラーレスポンスに対して適切なエラーメッセージを表示すること", () => {
     function mockAPIError(errorCode: string) {
       server.use(
-        http.get(`${API_BASE_URL}/v1/population/composition/perYear`, () => {
+        http.get(`${PROXY_API_PATH}/population`, () => {
           const { statusCode, body } = getErrorDetail(errorCode);
 
           return HttpResponse.json(body, {

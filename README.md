@@ -54,7 +54,7 @@ pnpm i
 RESAS-API の API KEY を取得し、以下の内容で`.env` ファイルを作成する。
 
 ```
-NEXT_PUBLIC_API_KEY=your-api-key
+RESAS_API_KEY=your-api-key
 ```
 
 ## 起動手順
@@ -232,3 +232,11 @@ Pages Router は使用経験が長く、要件として App Router の機能を�
 - MSW v2 の対応状況（Jest は設定が必要だが Vitest は不要）
 - 今後 browser mode を使用する選択ができる
   - jsdom より実際のブラウザで動作させた方がシンプルにテストコードを実装できる可能性が高い
+
+## セキュリティ
+
+セキュリティ観点から RESAS-API はバックエンドからのみリクエストする。
+
+フロントエンドからは RESAS-API のプロキシとして動作する API (`/api/resas/path`)を経由して RESAS-API のレスポンスを取得する。これによって、API KEY がフロントエンドに露出することを防いでいる。
+
+RESAS-API のプロキシ API はブラウザからのクロスオリジンリクエストに対して 403 レスポンスを返す。これによって、プロキシ API を意図せず利用されることを防いでいる。ただし、リクエストヘッダーに Origin が含まれない場合はクロスオリジンの判定ができないため通常通りに応答する。

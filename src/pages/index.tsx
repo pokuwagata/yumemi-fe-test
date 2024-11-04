@@ -1,8 +1,8 @@
 import Head from "next/head";
 
 import { Home } from "~/features/home/components/Home";
-import { requestApi } from "~/lib/requestApi";
-import { Prefecture, PrefecturesResponse } from "~/types/api";
+import { API_BASE_URL } from "~/lib/const";
+import { Prefecture } from "~/types/api";
 
 type Props = { prefectures: Prefecture[] };
 
@@ -22,11 +22,16 @@ export default function Page({ prefectures }: Props) {
 }
 
 export async function getStaticProps() {
-  const data = await requestApi<PrefecturesResponse>("/v1/prefectures");
+  const res = await fetch(`${API_BASE_URL}/v1/prefectures`, {
+    headers: {
+      "X-API-KEY": process.env.RESAS_API_KEY ?? "",
+    },
+  });
+  const json = await res.json();
 
   return {
     props: {
-      prefectures: data.result,
+      prefectures: json.result,
     },
   };
 }
