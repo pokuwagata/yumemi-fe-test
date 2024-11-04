@@ -41,7 +41,7 @@ vi.mock("recharts", async () => {
   return {
     ...OriginalModule,
     ResponsiveContainer: ({ children }: { children: ReactElement }) => (
-      <OriginalModule.ResponsiveContainer width={800} height={800}>
+      <OriginalModule.ResponsiveContainer width={800} aspect={1}>
         {children}
       </OriginalModule.ResponsiveContainer>
     ),
