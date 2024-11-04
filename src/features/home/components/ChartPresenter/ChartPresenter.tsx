@@ -12,6 +12,7 @@ import {
 
 import { usePrefecturesContext } from "~/features/home/contexts/PrefecturesContext";
 import { useSelectedPrefCodesContext } from "~/features/home/contexts/SelectedPrefCodesContext";
+import { generateUniqueColor } from "~/features/home/lib/generateUniqueColor";
 import { RechartsDataItem } from "~/features/home/types/recharts";
 
 type Props = {
@@ -43,7 +44,7 @@ export function ChartPresenter({ data }: Props) {
                 type="monotone"
                 name={name}
                 dataKey={code}
-                stroke="#8884d8"
+                stroke={generateUniqueColor(code)}
                 key={code}
               />
             );
