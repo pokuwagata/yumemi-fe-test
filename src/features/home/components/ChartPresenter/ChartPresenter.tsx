@@ -28,13 +28,18 @@ export function ChartPresenter({ data }: Props) {
       <ResponsiveContainer aspect={0.5} maxHeight={500}>
         <LineChart
           data={data}
-          margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
+          margin={{ top: 20, right: 20, bottom: 20, left: 25 }}
         >
           <XAxis dataKey="name">
             <Label value="年度" position="bottom" />
           </XAxis>
-          <YAxis tickFormatter={(value) => (value / 10e4).toFixed(1)}>
-            <Label value={"人口数 (万人)"} angle={-90} position="left" />
+          <YAxis tickFormatter={(value) => (value / 10e3).toFixed(1)}>
+            <Label
+              value={"人口数 (万人)"}
+              angle={-90}
+              position="left"
+              offset={15}
+            />
           </YAxis>
           {codes.map((code) => {
             const name = prefectures.find((p) => p.prefCode === code)?.prefName;
