@@ -1,4 +1,4 @@
-import { API_BASE_URL } from "~/lib/const";
+import { PROXY_API_PATH } from "~/lib/const";
 
 const errorCodeToMessage: { [key in string]: string } = {
   "400": "Bad Request",
@@ -10,11 +10,7 @@ const errorCodeToMessage: { [key in string]: string } = {
 
 export async function requestApi<T>(path: string): Promise<T> {
   try {
-    const res = await fetch(`${API_BASE_URL}${path}`, {
-      headers: {
-        "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY ?? "",
-      },
-    });
+    const res = await fetch(`${PROXY_API_PATH}${path}`);
     const json = await res.json();
 
     switch (res.status) {

@@ -13,7 +13,7 @@ export async function requestPopulation(
   }
 
   const data = await requestApi<PopulationResponse>(
-    `/v1/population/composition/perYear?cityCode=-&prefCode=${code}`,
+    `/population?prefCode=${code}`,
   );
 
   populationCache.set(code, data.result);
