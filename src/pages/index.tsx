@@ -24,7 +24,7 @@ export default function Page({ prefectures }: Props) {
 export async function getStaticProps() {
   const res = await fetch(`${API_BASE_URL}/v1/prefectures`, {
     headers: {
-      "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY ?? "",
+      "X-API-KEY": process.env.RESAS_API_KEY ?? "",
     },
   });
   const json = await res.json();
