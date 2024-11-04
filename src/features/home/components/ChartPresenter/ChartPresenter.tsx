@@ -10,6 +10,9 @@ import {
   YAxis,
 } from "recharts";
 
+import styles from "./ChartPresenter.module.css";
+
+import { Text } from "~/components/Text";
 import { usePrefecturesContext } from "~/features/home/contexts/PrefecturesContext";
 import { useSelectedPrefCodesContext } from "~/features/home/contexts/SelectedPrefCodesContext";
 import { generateUniqueColor } from "~/features/home/lib/generateUniqueColor";
@@ -59,6 +62,11 @@ export function ChartPresenter({ data }: Props) {
           <Tooltip />
         </LineChart>
       </ResponsiveContainer>
+      <figcaption className={styles.caption}>
+        <Text fontSize="sm" fontWeight="normal">
+          各都道府県の人口推移
+        </Text>
+      </figcaption>
     </figure>
   );
 }
