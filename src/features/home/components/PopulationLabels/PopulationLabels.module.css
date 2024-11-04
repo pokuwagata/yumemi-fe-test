@@ -1,5 +1,5 @@
 .list {
   display: flex;
   flex-wrap: wrap;
-  gap: calc(var(--space-unit) * 2);
+  gap: var(--space2);
 }
