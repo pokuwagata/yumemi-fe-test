@@ -2,9 +2,8 @@ import { http, HttpResponse } from "msw";
 
 import population1 from "./population-1.json";
 import population2 from "./population-2.json";
-import prefectures from "./prefectures.json";
 
-import { API_BASE_URL, PROXY_API_PATH } from "~/lib/const";
+import { PROXY_API_PATH } from "~/lib/const";
 
 // @see https://opendata.resas-portal.go.jp/docs/api/v1/detail/index.html
 export function getErrorDetail(code: string) {
@@ -60,9 +59,6 @@ export function getErrorDetail(code: string) {
 }
 
 export const handlers = [
-  http.get(`${API_BASE_URL}/v1/prefectures`, () => {
-    return HttpResponse.json(prefectures);
-  }),
   http.get(`${PROXY_API_PATH}/population`, ({ request, cookies }) => {
     const errorCode = cookies.error;
 
