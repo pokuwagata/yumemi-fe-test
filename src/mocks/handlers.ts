@@ -6,6 +6,7 @@ import prefectures from "./prefectures.json";
 
 import { API_BASE_URL, PROXY_API_PATH } from "~/lib/const";
 
+// @see https://opendata.resas-portal.go.jp/docs/api/v1/detail/index.html
 export function getErrorDetail(code: string) {
   let statusCode;
   let body;
@@ -62,18 +63,17 @@ export const handlers = [
   http.get(`${API_BASE_URL}/v1/prefectures`, () => {
     return HttpResponse.json(prefectures);
   }),
-  http.get(`${PROXY_API_PATH}/population`, ({ request }) => {
-    // エラーレスポンスをモックする場合は以下の実装を利用する
+  http.get(`${PROXY_API_PATH}/population`, ({ request, cookies }) => {
+    const errorCode = cookies.error;
 
-    // const errorCode = "500";
+    if (errorCode) {
+      // Cookie にエラーコードが設定されている場合はエラーレスポンスを返す
+      const { statusCode, body } = getErrorDetail(errorCode);
 
-    // if (errorCode) {
-    //   const { statusCode, body } = getErrorDetail(errorCode);
-
-    //   return HttpResponse.json(body, {
-    //     status: statusCode,
-    //   });
-    // }
+      return HttpResponse.json(body, {
+        status: statusCode,
+      });
+    }
 
     const url = new URL(request.url);
 
