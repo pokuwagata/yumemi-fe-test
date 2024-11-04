@@ -2,7 +2,11 @@
   --stale-50: #f8fafc;
   --stale-300: #cbd5e1;
   --stale-800: #1e293b;
-  --space-unit: 4px;
+  --space-unit: 0.25rem;
+  --space1: calc(var(--space-unit) * 1);
+  --space2: calc(var(--space-unit) * 2);
+  --space3: calc(var(--space-unit) * 3);
+  --space4: calc(var(--space-unit) * 4);
 }
 
 body {
