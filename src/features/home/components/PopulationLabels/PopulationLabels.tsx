@@ -9,7 +9,7 @@ import {
   populationLabelValues,
   populationValueToLabel,
 } from "~/features/home/lib/const";
-import { PopulationType } from "~/features/home/types/api";
+import { PopulationType } from "~/types/api";
 
 type Props = {
   type: PopulationType;

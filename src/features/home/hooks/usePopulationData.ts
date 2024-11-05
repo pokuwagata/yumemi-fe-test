@@ -1,12 +1,9 @@
 import { useEffect, useState } from "react";
 
 import { getPopulationData } from "~/features/home/lib/getPopulationData";
-import {
-  PopulationType,
-  RawPopulationResponses,
-} from "~/features/home/types/api";
 import { RechartsDataItem } from "~/features/home/types/recharts";
 import { requestPopulation } from "~/lib/requestPopulation";
+import { PopulationType, RawPopulationResponses } from "~/types/api";
 
 export function usePopulationData(codes: number[], type: PopulationType) {
   const [data, setData] = useState<RechartsDataItem[]>([]);
