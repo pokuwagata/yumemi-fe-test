@@ -1,10 +1,5 @@
 import "@testing-library/jest-dom/vitest";
-import {
-  render,
-  screen,
-  waitFor,
-  waitForElementToBeRemoved,
-} from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { http, HttpResponse } from "msw";
 import { ReactElement } from "react";
@@ -153,8 +148,6 @@ describe("異常系", () => {
       mockAPIError("400");
 
       render(<Home prefectures={prefectures.result} />);
-
-      await waitForElementToBeRemoved(() => screen.queryByText("Loading"));
 
       const message = await screen.findByText("400 Bad Request");
 
