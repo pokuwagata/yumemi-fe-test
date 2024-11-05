@@ -1,3 +1,11 @@
 .labels {
   margin-bottom: var(--space4);
 }
+
+.chart {
+  margin-bottom: var(--space4);
+}
+
+.loading {
+  text-align: center;
+}
