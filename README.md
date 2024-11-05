@@ -84,6 +84,10 @@ MSW 利用時は Cookie `error` に以下の値を格納することでブラウ
 | 429   | 429         | "{"message":null}"                                                                                                            |
 | 500   | 500         | "Server Error"                                                                                                                |
 
+`next start` で起動する場合は、`next build` 後に以下の URL にアクセスする。
+
+<http://local.yumemi-fe-test.com:3000/>
+
 ## デプロイ
 
 `main` ブランチへのマージをトリガーに GitHub Actions から Vercel へデプロイする。

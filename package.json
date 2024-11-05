@@ -9,7 +9,6 @@
     "dev": "next dev --experimental-https --experimental-https-key ./cert/key.pem --experimental-https-cert ./cert/cert.pem",
     "dev:mock": "NEXT_PUBLIC_API_MOCKING=enabled pnpm dev",
     "build": "next build",
-    "postbuild": "rm -rf ./out/mockServiceWorker.js",
     "start": "next start",
     "lint": "pnpm lint:typecheck && pnpm lint:eslint && pnpm lint:prettier && pnpm lint:stylelint",
     "lint:eslint": "next lint",
