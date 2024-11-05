@@ -29,11 +29,13 @@ export function ChartContainer() {
         </p>
       ) : (
         <>
-          <ChartPresenter data={data} />
+          <div className={styles.chart}>
+            <ChartPresenter data={data} />
+          </div>
           {isLoading && (
-            <p>
-              <Text fontSize="md" fontWeight="normal">
-                Loading
+            <p className={styles.loading}>
+              <Text fontSize="sm" fontWeight="normal">
+                Loading...
               </Text>
             </p>
           )}
