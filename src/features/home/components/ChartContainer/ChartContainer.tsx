@@ -7,7 +7,7 @@ import { ChartPresenter } from "~/features/home/components/ChartPresenter";
 import { PopulationLabels } from "~/features/home/components/PopulationLabels";
 import { useSelectedPrefCodesContext } from "~/features/home/contexts/SelectedPrefCodesContext";
 import { usePopulationData } from "~/features/home/hooks/usePopulationData";
-import { PopulationType } from "~/features/home/types/api";
+import { PopulationType } from "~/types/api";
 
 export function ChartContainer() {
   const { codes } = useSelectedPrefCodesContext();

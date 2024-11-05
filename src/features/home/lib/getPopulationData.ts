@@ -1,9 +1,6 @@
 import { populationValueToLabel } from "~/features/home/lib/const";
-import {
-  RawPopulationResponses,
-  PopulationType,
-} from "~/features/home/types/api";
 import { RechartsDataItem } from "~/features/home/types/recharts";
+import { RawPopulationResponses, PopulationType } from "~/types/api";
 
 export function getPopulationData(
   rawData: RawPopulationResponses,

@@ -1,4 +1,4 @@
-import { PopulationType } from "~/features/home/types/api";
+import { PopulationType } from "~/types/api";
 
 export const populationValueToLabel: { [key: number]: string } = {
   0: "総人口",
